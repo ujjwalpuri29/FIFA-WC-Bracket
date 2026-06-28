@@ -1,0 +1,1563 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FIFA World Cup 2026 — Knockout Bracket</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header-left">
+                <div class="trophy-icon">🏆</div>
+                <div class="header-title">
+                    <h1>FIFA World Cup 2026</h1>
+                    <p>
+                        Knockout Stage Bracket &mdash; June 28 &ndash; July 19
+                    </p>
+                </div>
+            </div>
+            <div class="flags">🇺🇸🇲🇽🇨🇦</div>
+            <div class="header-meta">
+                <strong>🏟 16 Host Cities &bull; 32 Knockout Matches</strong>
+                All times EDT &bull; Bracket confirmed June 27, 2026<br />
+                Final: July 19 &bull; MetLife Stadium, New Jersey
+            </div>
+        </header>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="window.print()">
+                ⬇ Download as PDF
+            </button>
+            <button class="btn btn-secondary" onclick="fillKnownTeams()">
+                Fill Confirmed Teams
+            </button>
+            <button class="btn btn-secondary" onclick="clearScores()">
+                Clear Scores
+            </button>
+            <button class="btn btn-danger" onclick="clearAll()">
+                Reset All
+            </button>
+            <span class="controls-note"
+                >Tip: Click "Fill Confirmed Teams" to load the current bracket,
+                then fill in scores and winners as matches are played.</span
+            >
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot dot-confirmed"></div>
+                Confirmed team
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot dot-green"></div>
+                Match winner
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot dot-gold"></div>
+                Champion
+            </div>
+            <span style="margin-left: auto; font-size: 10px"
+                >Click any field to edit &bull; Press Tab to advance &bull;
+                Score fields accept numbers</span
+            >
+        </div>
+
+        <main>
+            <!-- ROUND LABELS -->
+            <div class="round-labels">
+                <div class="round-label">
+                    Round of 32<span>Jun 28 – Jul 3</span>
+                </div>
+                <div class="round-label">Round of 16<span>Jul 4 – 7</span></div>
+                <div class="round-label">
+                    Quarterfinals<span>Jul 9 – 11</span>
+                </div>
+                <div class="round-label">
+                    Semifinals<span>Jul 14 – 15</span>
+                </div>
+                <div class="round-label">
+                    Semifinals<span>Jul 14 – 15</span>
+                </div>
+                <div class="round-label">
+                    Quarterfinals<span>Jul 9 – 11</span>
+                </div>
+                <div class="round-label">Round of 16<span>Jul 4 – 7</span></div>
+                <div class="round-label">
+                    Round of 32<span>Jun 28 – Jul 3</span>
+                </div>
+            </div>
+
+            <!-- BRACKET GRID -->
+            <div class="bracket-wrapper">
+                <!-- COL 1: R32 Left Top (matches 1–4) -->
+                <div class="col col-r32" id="col1">
+                    <!-- M1 -->
+                    <div class="match" id="m1">
+                        <div class="match-meta">
+                            <span class="match-num">M1</span>
+                            <div class="match-datetime">
+                                Jun 28 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    SoFi Stadium, Los Angeles
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m1t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m1s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m1t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m1s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M2 -->
+                    <div class="match" id="m2">
+                        <div class="match-meta">
+                            <span class="match-num">M2</span>
+                            <div class="match-datetime">
+                                Jun 29 · 1:00 PM EDT
+                                <div class="match-venue">
+                                    NRG Stadium, Houston
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m2t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m2s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m2t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m2s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M3 -->
+                    <div class="match" id="m3">
+                        <div class="match-meta">
+                            <span class="match-num">M3</span>
+                            <div class="match-datetime">
+                                Jun 29 · 4:00 PM EDT
+                                <div class="match-venue">
+                                    Gillette Stadium, Boston
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m3t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m3s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m3t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m3s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M4 -->
+                    <div class="match" id="m4">
+                        <div class="match-meta">
+                            <span class="match-num">M4</span>
+                            <div class="match-datetime">
+                                Jun 29 · 9:00 PM EDT
+                                <div class="match-venue">
+                                    Estadio Monterrey, Mexico
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m4t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m4s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m4t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m4s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M5 -->
+                    <div class="match" id="m5">
+                        <div class="match-meta">
+                            <span class="match-num">M5</span>
+                            <div class="match-datetime">
+                                Jun 30 · 1:00 PM EDT
+                                <div class="match-venue">
+                                    AT&T Stadium, Dallas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m5t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m5s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m5t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m5s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M6 -->
+                    <div class="match" id="m6">
+                        <div class="match-meta">
+                            <span class="match-num">M6</span>
+                            <div class="match-datetime">
+                                Jun 30 · 5:00 PM EDT
+                                <div class="match-venue">
+                                    MetLife Stadium, New Jersey
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m6t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m6s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m6t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m6s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M7 -->
+                    <div class="match" id="m7">
+                        <div class="match-meta">
+                            <span class="match-num">M7</span>
+                            <div class="match-datetime">
+                                Jun 30 · 9:00 PM EDT
+                                <div class="match-venue">
+                                    Estadio Azteca, Mexico City
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m7t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m7s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m7t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m7s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M8 -->
+                    <div class="match" id="m8">
+                        <div class="match-meta">
+                            <span class="match-num">M8</span>
+                            <div class="match-datetime">
+                                Jul 1 · 12:00 PM EDT
+                                <div class="match-venue">
+                                    Mercedes-Benz Stadium, Atlanta
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m8t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m8s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m8t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m8s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 2: R16 Left -->
+                <div class="col col-r16" id="col2">
+                    <div class="match" id="m17">
+                        <div class="match-meta">
+                            <span class="match-num">R16-A</span>
+                            <div class="match-datetime">
+                                Jul 4 · 1:00 PM EDT
+                                <div class="match-venue">
+                                    NRG Stadium, Houston
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m17t1"
+                                placeholder="W-M1"
+                            /><input
+                                class="score-input"
+                                id="m17s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m17t2"
+                                placeholder="W-M2"
+                            /><input
+                                class="score-input"
+                                id="m17s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m18">
+                        <div class="match-meta">
+                            <span class="match-num">R16-B</span>
+                            <div class="match-datetime">
+                                Jul 4 · 5:00 PM EDT
+                                <div class="match-venue">
+                                    Lincoln Financial Field, Philadelphia
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m18t1"
+                                placeholder="W-M3"
+                            /><input
+                                class="score-input"
+                                id="m18s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m18t2"
+                                placeholder="W-M4"
+                            /><input
+                                class="score-input"
+                                id="m18s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m19">
+                        <div class="match-meta">
+                            <span class="match-num">R16-C</span>
+                            <div class="match-datetime">
+                                Jul 5 · 4:00 PM EDT
+                                <div class="match-venue">
+                                    MetLife Stadium, New Jersey
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m19t1"
+                                placeholder="W-M5"
+                            /><input
+                                class="score-input"
+                                id="m19s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m19t2"
+                                placeholder="W-M6"
+                            /><input
+                                class="score-input"
+                                id="m19s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m20">
+                        <div class="match-meta">
+                            <span class="match-num">R16-D</span>
+                            <div class="match-datetime">
+                                Jul 5 · 8:00 PM EDT
+                                <div class="match-venue">
+                                    Estadio Azteca, Mexico City
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m20t1"
+                                placeholder="W-M7"
+                            /><input
+                                class="score-input"
+                                id="m20s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m20t2"
+                                placeholder="W-M8"
+                            /><input
+                                class="score-input"
+                                id="m20s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 3: QF Left -->
+                <div class="col col-qf" id="col3">
+                    <div class="match qf-match" id="m25">
+                        <div class="match-meta">
+                            <span class="match-num">QF-1</span>
+                            <div class="match-datetime">
+                                Jul 9 · 4:00 PM EDT
+                                <div class="match-venue">
+                                    Gillette Stadium, Boston
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m25t1"
+                                placeholder="W-R16A"
+                            /><input
+                                class="score-input"
+                                id="m25s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m25t2"
+                                placeholder="W-R16B"
+                            /><input
+                                class="score-input"
+                                id="m25s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match qf-match" id="m26">
+                        <div class="match-meta">
+                            <span class="match-num">QF-2</span>
+                            <div class="match-datetime">
+                                Jul 10 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    SoFi Stadium, Los Angeles
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m26t1"
+                                placeholder="W-R16C"
+                            /><input
+                                class="score-input"
+                                id="m26s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m26t2"
+                                placeholder="W-R16D"
+                            /><input
+                                class="score-input"
+                                id="m26s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 4: SF Left -->
+                <div class="col col-sf" id="col4">
+                    <div class="match sf-match" id="m29">
+                        <div class="match-meta">
+                            <span class="match-num">SF-1</span>
+                            <div class="match-datetime">
+                                Jul 14 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    AT&T Stadium, Dallas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m29t1"
+                                placeholder="W-QF1"
+                            /><input
+                                class="score-input"
+                                id="m29s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m29t2"
+                                placeholder="W-QF2"
+                            /><input
+                                class="score-input"
+                                id="m29s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL CENTER: Final + 3rd Place -->
+                <div class="center-col">
+                    <div class="trophy-center">
+                        <span class="big-trophy">🏆</span>
+                        <h2>World Cup Final</h2>
+                        <p>Jul 19 · MetLife Stadium, NJ · 3:00 PM EDT</p>
+                    </div>
+
+                    <div class="champion-box">
+                        <label>🥇 Champion</label>
+                        <input
+                            class="champion-input"
+                            id="champion"
+                            placeholder="WORLD CHAMPION"
+                        />
+                    </div>
+
+                    <div
+                        class="match final-match"
+                        id="m31"
+                        style="width: 240px"
+                    >
+                        <div class="match-meta" style="background: #1a1408">
+                            <span class="match-num" style="font-size: 11px"
+                                >FINAL</span
+                            >
+                            <div class="match-datetime">
+                                Jul 19 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    MetLife Stadium, New Jersey
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m31t1"
+                                placeholder="W-SF1"
+                            /><input
+                                class="score-input"
+                                id="m31s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m31t2"
+                                placeholder="W-SF2"
+                            /><input
+                                class="score-input"
+                                id="m31s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+
+                    <div style="height: 20px"></div>
+
+                    <!-- 3rd Place -->
+                    <div class="third-place-box" id="m30">
+                        <div class="tph">
+                            <span>🥉 Third Place Match</span
+                            ><span>Jul 18 · 5:00 PM EDT</span>
+                        </div>
+                        <div
+                            style="
+                                background: #0a1a0a;
+                                padding: 3px 8px;
+                                font-size: 9px;
+                                color: #4a7a4a;
+                                border-bottom: 1px solid #1a3a1a;
+                            "
+                        >
+                            Hard Rock Stadium, Miami
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m30t1"
+                                placeholder="L-SF1"
+                            /><input
+                                class="score-input"
+                                id="m30s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m30t2"
+                                placeholder="L-SF2"
+                            /><input
+                                class="score-input"
+                                id="m30s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="info-strip">
+                        <strong>🏟 Tournament Format</strong>
+                        48 teams · 12 groups · Round of 32<br />
+                        Extra time + penalties if level at 90 min<br />
+                        <span style="color: #c8a84b"
+                            >All times shown in EDT (Eastern)</span
+                        >
+                    </div>
+                </div>
+
+                <!-- COL 5: SF Right -->
+                <div class="col col-sf" id="col5">
+                    <div class="match sf-match" id="m30b">
+                        <div class="match-meta">
+                            <span class="match-num">SF-2</span>
+                            <div class="match-datetime">
+                                Jul 15 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    Mercedes-Benz Stadium, Atlanta
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m30bt1"
+                                placeholder="W-QF3"
+                            /><input
+                                class="score-input"
+                                id="m30bs1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m30bt2"
+                                placeholder="W-QF4"
+                            /><input
+                                class="score-input"
+                                id="m30bs2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 6: QF Right -->
+                <div class="col col-qf" id="col6">
+                    <div class="match qf-match" id="m27">
+                        <div class="match-meta">
+                            <span class="match-num">QF-3</span>
+                            <div class="match-datetime">
+                                Jul 11 · 5:00 PM EDT
+                                <div class="match-venue">
+                                    Hard Rock Stadium, Miami
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m27t1"
+                                placeholder="W-R16E"
+                            /><input
+                                class="score-input"
+                                id="m27s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m27t2"
+                                placeholder="W-R16F"
+                            /><input
+                                class="score-input"
+                                id="m27s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match qf-match" id="m28">
+                        <div class="match-meta">
+                            <span class="match-num">QF-4</span>
+                            <div class="match-datetime">
+                                Jul 11 · 9:00 PM EDT
+                                <div class="match-venue">
+                                    Arrowhead Stadium, Kansas City
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m28t1"
+                                placeholder="W-R16G"
+                            /><input
+                                class="score-input"
+                                id="m28s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m28t2"
+                                placeholder="W-R16H"
+                            /><input
+                                class="score-input"
+                                id="m28s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 7: R16 Right -->
+                <div class="col col-r16" id="col7">
+                    <div class="match" id="m21">
+                        <div class="match-meta">
+                            <span class="match-num">R16-E</span>
+                            <div class="match-datetime">
+                                Jul 6 · 12:00 PM EDT
+                                <div class="match-venue">
+                                    Mercedes-Benz Stadium, Atlanta
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m21t1"
+                                placeholder="W-M9"
+                            /><input
+                                class="score-input"
+                                id="m21s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m21t2"
+                                placeholder="W-M10"
+                            /><input
+                                class="score-input"
+                                id="m21s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m22">
+                        <div class="match-meta">
+                            <span class="match-num">R16-F</span>
+                            <div class="match-datetime">
+                                Jul 6 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    AT&T Stadium, Dallas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m22t1"
+                                placeholder="W-M11"
+                            /><input
+                                class="score-input"
+                                id="m22s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m22t2"
+                                placeholder="W-M12"
+                            /><input
+                                class="score-input"
+                                id="m22s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m23">
+                        <div class="match-meta">
+                            <span class="match-num">R16-G</span>
+                            <div class="match-datetime">
+                                Jul 6 · 8:00 PM EDT
+                                <div class="match-venue">
+                                    Lumen Field, Seattle
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m23t1"
+                                placeholder="W-M13"
+                            /><input
+                                class="score-input"
+                                id="m23s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m23t2"
+                                placeholder="W-M14"
+                            /><input
+                                class="score-input"
+                                id="m23s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="match" id="m24">
+                        <div class="match-meta">
+                            <span class="match-num">R16-H</span>
+                            <div class="match-datetime">
+                                Jul 7 · 4:00 PM EDT
+                                <div class="match-venue">
+                                    BC Place, Vancouver
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m24t1"
+                                placeholder="W-M15"
+                            /><input
+                                class="score-input"
+                                id="m24s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m24t2"
+                                placeholder="W-M16"
+                            /><input
+                                class="score-input"
+                                id="m24s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 8: R32 Right (matches 9–16) -->
+                <div class="col col-r32" id="col8">
+                    <!-- M9 -->
+                    <div class="match" id="m9">
+                        <div class="match-meta">
+                            <span class="match-num">M9</span>
+                            <div class="match-datetime">
+                                Jul 1 · 4:00 PM EDT
+                                <div class="match-venue">
+                                    Lumen Field, Seattle
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m9t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m9s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m9t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m9s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M10 -->
+                    <div class="match" id="m10">
+                        <div class="match-meta">
+                            <span class="match-num">M10</span>
+                            <div class="match-datetime">
+                                Jul 1 · 8:00 PM EDT
+                                <div class="match-venue">
+                                    Levi's Stadium, San Francisco
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m10t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m10s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m10t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m10s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M11 -->
+                    <div class="match" id="m11">
+                        <div class="match-meta">
+                            <span class="match-num">M11</span>
+                            <div class="match-datetime">
+                                Jul 2 · 3:00 PM EDT
+                                <div class="match-venue">
+                                    SoFi Stadium, Los Angeles
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m11t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m11s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m11t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m11s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M12 -->
+                    <div class="match" id="m12">
+                        <div class="match-meta">
+                            <span class="match-num">M12</span>
+                            <div class="match-datetime">
+                                Jul 2 · 7:00 PM EDT
+                                <div class="match-venue">
+                                    BMO Field, Toronto
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m12t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m12s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m12t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m12s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M13 -->
+                    <div class="match" id="m13">
+                        <div class="match-meta">
+                            <span class="match-num">M13</span>
+                            <div class="match-datetime">
+                                Jul 2 · 9:00 PM EDT
+                                <div class="match-venue">
+                                    BC Place, Vancouver
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m13t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m13s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m13t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m13s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M14 -->
+                    <div class="match" id="m14">
+                        <div class="match-meta">
+                            <span class="match-num">M14</span>
+                            <div class="match-datetime">
+                                Jul 3 · 2:00 PM EDT
+                                <div class="match-venue">
+                                    AT&T Stadium, Dallas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m14t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m14s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m14t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m14s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M15 -->
+                    <div class="match" id="m15">
+                        <div class="match-meta">
+                            <span class="match-num">M15</span>
+                            <div class="match-datetime">
+                                Jul 3 · 6:00 PM EDT
+                                <div class="match-venue">
+                                    Hard Rock Stadium, Miami
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m15t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m15s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m15t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m15s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                    <!-- M16 -->
+                    <div class="match" id="m16">
+                        <div class="match-meta">
+                            <span class="match-num">M16</span>
+                            <div class="match-datetime">
+                                Jul 3 · 9:30 PM EDT
+                                <div class="match-venue">
+                                    Arrowhead Stadium, Kansas City
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m16t1"
+                                placeholder="Team 1"
+                            /><input
+                                class="score-input"
+                                id="m16s1"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                        <div class="team-row">
+                            <span class="team-flag">🏳</span
+                            ><input
+                                class="team-input"
+                                id="m16t2"
+                                placeholder="Team 2"
+                            /><input
+                                class="score-input"
+                                id="m16s2"
+                                placeholder="–"
+                                type="number"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /bracket-wrapper -->
+        </main>
+
+        <script>
+            // Known confirmed matchups from bracket (as of June 27, 2026)
+            const confirmedTeams = {
+                // R32 – Left side
+                m1t1: "South Africa",
+                m1t2: "Canada",
+                m2t1: "Brazil",
+                m2t2: "Japan",
+                m3t1: "Germany",
+                m3t2: "Paraguay",
+                m4t1: "Netherlands",
+                m4t2: "Morocco",
+                m5t1: "Ivory Coast",
+                m5t2: "Norway",
+                m6t1: "France",
+                m6t2: "Sweden",
+                m7t1: "Mexico",
+                m7t2: "Scotland",
+                m8t1: "England",
+                m8t2: "Cabo Verde",
+                // R32 – Right side
+                m9t1: "Egypt",
+                m9t2: "Czechia",
+                m10t1: "United States",
+                m10t2: "Bosnia & Herz.",
+                m11t1: "Spain",
+                m11t2: "Austria",
+                m12t1: "Switzerland",
+                m12t2: "Belgium",
+                m13t1: "Portugal",
+                m13t2: "Ghana",
+                m14t1: "Colombia",
+                m14t2: "Croatia",
+                m15t1: "Argentina",
+                m15t2: "Uruguay",
+                m16t1: "Australia",
+                m16t2: "DR Congo",
+            };
+
+            const flags = {
+                "South Africa": "🇿🇦",
+                Canada: "🇨🇦",
+                Brazil: "🇧🇷",
+                Japan: "🇯🇵",
+                Germany: "🇩🇪",
+                Paraguay: "🇵🇾",
+                Netherlands: "🇳🇱",
+                Morocco: "🇲🇦",
+                "Ivory Coast": "🇨🇮",
+                Norway: "🇳🇴",
+                France: "🇫🇷",
+                Sweden: "🇸🇪",
+                Mexico: "🇲🇽",
+                Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+                England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+                "Cabo Verde": "🇨🇻",
+                Egypt: "🇪🇬",
+                Czechia: "🇨🇿",
+                "United States": "🇺🇸",
+                "Bosnia & Herz.": "🇧🇦",
+                Spain: "🇪🇸",
+                Austria: "🇦🇹",
+                Switzerland: "🇨🇭",
+                Belgium: "🇧🇪",
+                Portugal: "🇵🇹",
+                Ghana: "🇬🇭",
+                Colombia: "🇨🇴",
+                Croatia: "🇭🇷",
+                Argentina: "🇦🇷",
+                Uruguay: "🇺🇾",
+                Australia: "🇦🇺",
+                "DR Congo": "🇨🇩",
+            };
+
+            function getFlag(name) {
+                return flags[name] || "";
+            }
+
+            function fillKnownTeams() {
+                for (const [id, val] of Object.entries(confirmedTeams)) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.value = val;
+                        el.classList.add("confirmed");
+                        // Update adjacent flag
+                        const row = el.closest(".team-row");
+                        if (row) {
+                            const flagEl = row.querySelector(".team-flag");
+                            if (flagEl) flagEl.textContent = getFlag(val);
+                        }
+                    }
+                }
+            }
+
+            function clearScores() {
+                document
+                    .querySelectorAll(".score-input")
+                    .forEach((el) => (el.value = ""));
+            }
+
+            function clearAll() {
+                if (!confirm("Clear all data from the bracket?")) return;
+                document
+                    .querySelectorAll(
+                        ".team-input, .score-input, .champion-input",
+                    )
+                    .forEach((el) => {
+                        el.value = "";
+                        el.classList.remove("confirmed", "winner");
+                    });
+                document
+                    .querySelectorAll(".team-flag")
+                    .forEach((el) => (el.textContent = ""));
+            }
+
+            // Update flag emoji when team name is typed
+            document.querySelectorAll(".team-input").forEach((input) => {
+                input.addEventListener("input", function () {
+                    const row = this.closest(".team-row");
+                    const flagEl = row?.querySelector(".team-flag");
+                    if (flagEl)
+                        flagEl.textContent = getFlag(this.value.trim()) || "";
+                    this.classList.remove("confirmed");
+                });
+            });
+        </script>
+    </body>
+</html>

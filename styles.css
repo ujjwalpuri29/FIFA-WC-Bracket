@@ -1,0 +1,567 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --border: #2a3a52;
+    --gold: #c8a84b;
+    --gold-light: #e8c878;
+    --silver: #8aa0bb;
+    --green: #1a6e3c;
+    --green-light: #22c55e;
+    --text: #e8edf5;
+    --text-dim: #6b7f99;
+    --text-mid: #94a3b8;
+    --accent: #1d4ed8;
+    --accent2: #c8a84b;
+    --input-bg: #0d1624;
+    --input-border: #2d4060;
+    --input-focus: #c8a84b;
+    --winner-bg: #0f2a1a;
+    --winner-border: #22c55e;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+body {
+    min-width: 1400px;
+}
+
+/* ── HEADER ── */
+header {
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a2236 50%, #0a0e1a 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 28px 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at 50% -20%,
+        rgba(200, 168, 75, 0.12) 0%,
+        transparent 65%
+    );
+    pointer-events: none;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.trophy-icon {
+    font-size: 48px;
+    filter: drop-shadow(0 0 12px rgba(200, 168, 75, 0.5));
+}
+.header-title h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.header-title p {
+    font-size: 13px;
+    color: var(--text-mid);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+.flags {
+    font-size: 28px;
+    letter-spacing: 4px;
+}
+.header-meta {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.8;
+}
+.header-meta strong {
+    color: var(--gold);
+    font-size: 13px;
+    display: block;
+}
+
+/* ── CONTROLS ── */
+.controls {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.btn {
+    font-family: "Oswald", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+.btn-primary {
+    background: var(--gold);
+    color: #0a0e1a;
+}
+.btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(200, 168, 75, 0.35);
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+.btn-danger {
+    background: transparent;
+    color: #f87171;
+    border: 1px solid #7f1d1d;
+}
+.btn-danger:hover {
+    background: #7f1d1d;
+    color: #fff;
+}
+.controls-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-left: auto;
+}
+
+/* ── LEGEND ── */
+.legend {
+    background: var(--surface2);
+    padding: 10px 40px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-gold {
+    background: var(--gold);
+}
+.dot-green {
+    background: var(--green-light);
+}
+.dot-confirmed {
+    background: #3b82f6;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+    padding: 30px 30px 60px;
+}
+
+.bracket-wrapper {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    align-items: center;
+    min-height: 1600px;
+    position: relative;
+}
+
+/* ── ROUND LABELS ── */
+.round-labels {
+    display: grid;
+    grid-template-columns: 280px 230px 200px 160px 160px 200px 230px 280px;
+    gap: 0;
+    padding: 0 0 12px 0;
+}
+.round-label {
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+}
+.round-label span {
+    display: block;
+    font-size: 9px;
+    color: var(--text-dim);
+    font-family: "Inter", sans-serif;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    font-weight: 400;
+}
+
+/* ── COLUMN ── */
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 6px 5px;
+}
+
+/* ── MATCH CARD ── */
+.match {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin: 5px 0;
+    overflow: hidden;
+    transition: border-color 0.18s;
+    position: relative;
+}
+.match:hover {
+    border-color: var(--gold);
+}
+.match-meta {
+    background: var(--surface2);
+    padding: 4px 8px;
+    font-size: 9.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+.match-num {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 10px;
+}
+.match-datetime {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-align: right;
+    line-height: 1.4;
+}
+.match-venue {
+    font-size: 8.5px;
+    color: #4a5a72;
+    margin-top: 1px;
+}
+
+.team-row {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    gap: 6px;
+    border-bottom: 1px solid #1a2540;
+    position: relative;
+}
+.team-row:last-child {
+    border-bottom: none;
+}
+.team-flag {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.team-input {
+    flex: 1;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    color: var(--text);
+    font-size: 11px;
+    font-family: "Inter", sans-serif;
+    padding: 4px 7px;
+    outline: none;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+    min-width: 0;
+}
+.team-input:focus {
+    border-color: var(--input-focus);
+    background: #121e32;
+}
+.team-input::placeholder {
+    color: #2d4060;
+}
+.team-input.confirmed {
+    border-color: #1d4ed8;
+    background: #0d1a2e;
+    color: #60a5fa;
+}
+.team-input.winner {
+    border-color: var(--winner-border);
+    background: var(--winner-bg);
+    color: var(--green-light);
+    font-weight: 600;
+}
+.score-input {
+    width: 28px;
+    flex-shrink: 0;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+    padding: 4px 2px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.score-input:focus {
+    border-color: var(--gold);
+}
+.score-input::placeholder {
+    color: #2d4060;
+    font-size: 10px;
+}
+
+/* ── SPECIAL MATCHES ── */
+.match.final-match {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(200, 168, 75, 0.2);
+}
+.match.final-match .match-meta {
+    background: #1a1408;
+    border-color: #3d3010;
+}
+.match.final-match .match-num {
+    font-size: 11px;
+}
+.match.sf-match {
+    border-color: #4a3a1a;
+}
+.match.qf-match {
+    border-color: #2a3248;
+}
+.match.third-match {
+    border-color: #2a3a2a;
+}
+
+/* ── CENTER COLUMN (Final + 3rd) ── */
+.center-col {
+    grid-column: 4 / 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    gap: 16px;
+}
+.trophy-center {
+    text-align: center;
+    padding: 16px 0;
+}
+.trophy-center .big-trophy {
+    font-size: 52px;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 16px rgba(200, 168, 75, 0.6));
+}
+.trophy-center h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.trophy-center p {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* champion box */
+.champion-box {
+    background: linear-gradient(135deg, #1a1408, #0f0e0a);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 14px 16px;
+    width: 240px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(200, 168, 75, 0.2);
+}
+.champion-box label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+.champion-input {
+    width: 100%;
+    background: #0a0c10;
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    color: var(--gold-light);
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+    padding: 8px;
+    outline: none;
+    letter-spacing: 1px;
+}
+.champion-input:focus {
+    box-shadow: 0 0 10px rgba(200, 168, 75, 0.3);
+}
+.champion-input::placeholder {
+    color: #3d3010;
+    font-size: 13px;
+}
+
+/* ── CONNECTOR LINES via background ── */
+/* Done via column padding and visual grouping */
+
+/* ── THIRD PLACE BOX ── */
+.third-place-box {
+    background: var(--surface);
+    border: 1px solid #2a4a2a;
+    border-radius: 5px;
+    width: 240px;
+    overflow: hidden;
+}
+.third-place-box .tph {
+    background: #0f2a0f;
+    padding: 5px 10px;
+    font-size: 9.5px;
+    color: #22c55e;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid #1a4a1a;
+    display: flex;
+    justify-content: space-between;
+}
+.info-strip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 14px;
+    width: 240px;
+    font-size: 9.5px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    text-align: center;
+}
+.info-strip strong {
+    color: var(--text-mid);
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+/* ── DIVIDERS ── */
+.section-divider {
+    padding: 18px 0 8px;
+    font-family: "Oswald", sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin: 10px 30px 0;
+}
+
+/* ── MATCH size variations ── */
+.col-r32 .match {
+}
+.col-r16 .match {
+}
+.col-qf .match {
+}
+.col-sf .match {
+}
+
+/* ── PRINT / PDF ── */
+@media print {
+    body {
+        min-width: auto;
+        background: #fff !important;
+        color: #000 !important;
+    }
+    header {
+        background: #f8f8f8 !important;
+        border-bottom: 2px solid #c8a84b;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .controls,
+    .legend {
+        display: none !important;
+    }
+    main {
+        padding: 10px;
+    }
+    .bracket-wrapper {
+        min-height: auto;
+    }
+    .match {
+        border: 1px solid #ccc !important;
+        background: #f9f9f9 !important;
+        break-inside: avoid;
+    }
+    .match-meta {
+        background: #efefef !important;
+    }
+    .team-input,
+    .score-input,
+    .champion-input {
+        background: #fff !important;
+        border: 1px solid #aaa !important;
+        color: #000 !important;
+    }
+    .trophy-center .big-trophy {
+        filter: none;
+    }
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
