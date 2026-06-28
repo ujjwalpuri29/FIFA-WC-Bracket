@@ -1,0 +1,308 @@
+[
+    {
+        "id": "m1",
+        "num": "M1",
+        "date": "Sun, Jun 28",
+        "time": "3:00 PM",
+        "venue": "SoFi Stadium, LA",
+        "col": "col-r32-l",
+        "nextMatch": "r1",
+        "nextSlot": 1
+    },
+    {
+        "id": "m2",
+        "num": "M2",
+        "date": "Mon, Jun 29",
+        "time": "1:00 PM",
+        "venue": "NRG Stadium, Houston",
+        "col": "col-r32-l",
+        "nextMatch": "r1",
+        "nextSlot": 2
+    },
+    {
+        "id": "m3",
+        "num": "M3",
+        "date": "Mon, Jun 29",
+        "time": "4:00 PM",
+        "venue": "Gillette Stadium, Boston",
+        "col": "col-r32-l",
+        "nextMatch": "r2",
+        "nextSlot": 1
+    },
+    {
+        "id": "m4",
+        "num": "M4",
+        "date": "Mon, Jun 29",
+        "time": "9:00 PM",
+        "venue": "Estadio Monterrey",
+        "col": "col-r32-l",
+        "nextMatch": "r2",
+        "nextSlot": 2
+    },
+    {
+        "id": "m5",
+        "num": "M5",
+        "date": "Tue, Jun 30",
+        "time": "1:00 PM",
+        "venue": "AT&T Stadium, Dallas",
+        "col": "col-r32-l",
+        "nextMatch": "r3",
+        "nextSlot": 1
+    },
+    {
+        "id": "m6",
+        "num": "M6",
+        "date": "Tue, Jun 30",
+        "time": "5:00 PM",
+        "venue": "MetLife Stadium, NJ",
+        "col": "col-r32-l",
+        "nextMatch": "r3",
+        "nextSlot": 2
+    },
+    {
+        "id": "m7",
+        "num": "M7",
+        "date": "Tue, Jun 30",
+        "time": "9:00 PM",
+        "venue": "Estadio Azteca, Mexico City",
+        "col": "col-r32-l",
+        "nextMatch": "r4",
+        "nextSlot": 1
+    },
+    {
+        "id": "m8",
+        "num": "M8",
+        "date": "Wed, Jul 1",
+        "time": "12:00 PM",
+        "venue": "Mercedes-Benz, Atlanta",
+        "col": "col-r32-l",
+        "nextMatch": "r4",
+        "nextSlot": 2
+    },
+    {
+        "id": "r1",
+        "num": "R16-A",
+        "date": "Sat, Jul 4",
+        "time": "1:00 PM",
+        "venue": "NRG Stadium, Houston",
+        "col": "col-r16-l",
+        "nextMatch": "q1",
+        "nextSlot": 1
+    },
+    {
+        "id": "r2",
+        "num": "R16-B",
+        "date": "Sat, Jul 4",
+        "time": "5:00 PM",
+        "venue": "Lincoln Financial, Philadelphia",
+        "col": "col-r16-l",
+        "nextMatch": "q1",
+        "nextSlot": 2
+    },
+    {
+        "id": "r3",
+        "num": "R16-C",
+        "date": "Sun, Jul 5",
+        "time": "4:00 PM",
+        "venue": "MetLife Stadium, NJ",
+        "col": "col-r16-l",
+        "nextMatch": "q2",
+        "nextSlot": 1
+    },
+    {
+        "id": "r4",
+        "num": "R16-D",
+        "date": "Sun, Jul 5",
+        "time": "8:00 PM",
+        "venue": "Estadio Azteca, Mexico City",
+        "col": "col-r16-l",
+        "nextMatch": "q2",
+        "nextSlot": 2
+    },
+    {
+        "id": "q1",
+        "num": "QF-1",
+        "date": "Thu, Jul 9",
+        "time": "4:00 PM",
+        "venue": "Gillette Stadium, Boston",
+        "col": "col-qf-l",
+        "nextMatch": "s1",
+        "nextSlot": 1
+    },
+    {
+        "id": "q2",
+        "num": "QF-2",
+        "date": "Fri, Jul 10",
+        "time": "3:00 PM",
+        "venue": "SoFi Stadium, LA",
+        "col": "col-qf-l",
+        "nextMatch": "s1",
+        "nextSlot": 2
+    },
+    {
+        "id": "s1",
+        "num": "SF-1",
+        "date": "Tue,Jul 14",
+        "time": "3:00 PM",
+        "venue": "AT&T Stadium, Dallas",
+        "col": "col-sf-l",
+        "nextMatch": "FINAL",
+        "nextSlot": 1,
+        "loserMatch": "3RD",
+        "loserSlot": 1,
+        "cssClass": "sf-match"
+    },
+    {
+        "id": "m9",
+        "num": "M9",
+        "date": "Wed, Jul 1",
+        "time": "4:00 PM",
+        "venue": "Lumen Field, Seattle",
+        "col": "col-r32-r",
+        "nextMatch": "r5",
+        "nextSlot": 1
+    },
+    {
+        "id": "m10",
+        "num": "M10",
+        "date": "Wed, Jul 1",
+        "time": "8:00 PM",
+        "venue": "Levi's Stadium, SF",
+        "col": "col-r32-r",
+        "nextMatch": "r5",
+        "nextSlot": 2
+    },
+    {
+        "id": "m11",
+        "num": "M11",
+        "date": "Thu, Jul 2",
+        "time": "3:00 PM",
+        "venue": "SoFi Stadium, LA",
+        "col": "col-r32-r",
+        "nextMatch": "r6",
+        "nextSlot": 1
+    },
+    {
+        "id": "m12",
+        "num": "M12",
+        "date": "Thu, Jul 2",
+        "time": "7:00 PM",
+        "venue": "BMO Field, Toronto",
+        "col": "col-r32-r",
+        "nextMatch": "r6",
+        "nextSlot": 2
+    },
+    {
+        "id": "m13",
+        "num": "M13",
+        "date": "Thu, Jul 2",
+        "time": "9:00 PM",
+        "venue": "BC Place, Vancouver",
+        "col": "col-r32-r",
+        "nextMatch": "r7",
+        "nextSlot": 1
+    },
+    {
+        "id": "m14",
+        "num": "M14",
+        "date": "Fri, Jul 3",
+        "time": "2:00 PM",
+        "venue": "AT&T Stadium, Dallas",
+        "col": "col-r32-r",
+        "nextMatch": "r7",
+        "nextSlot": 2
+    },
+    {
+        "id": "m15",
+        "num": "M15",
+        "date": "Fri, Jul 3",
+        "time": "6:00 PM",
+        "venue": "Hard Rock, Miami",
+        "col": "col-r32-r",
+        "nextMatch": "r8",
+        "nextSlot": 1
+    },
+    {
+        "id": "m16",
+        "num": "M16",
+        "date": "Fri, Jul 3",
+        "time": "9:30 PM",
+        "venue": "Arrowhead, Kansas City",
+        "col": "col-r32-r",
+        "nextMatch": "r8",
+        "nextSlot": 2
+    },
+    {
+        "id": "r5",
+        "num": "R16-E",
+        "date": "Mon, Jul 6",
+        "time": "12:00 PM",
+        "venue": "Mercedes-Benz, Atlanta",
+        "col": "col-r16-r",
+        "nextMatch": "q3",
+        "nextSlot": 1
+    },
+    {
+        "id": "r6",
+        "num": "R16-F",
+        "date": "Mon, Jul 6",
+        "time": "3:00 PM",
+        "venue": "AT&T Stadium, Dallas",
+        "col": "col-r16-r",
+        "nextMatch": "q3",
+        "nextSlot": 2
+    },
+    {
+        "id": "r7",
+        "num": "R16-G",
+        "date": "Mon, Jul 6",
+        "time": "8:00 PM",
+        "venue": "Lumen Field, Seattle",
+        "col": "col-r16-r",
+        "nextMatch": "q4",
+        "nextSlot": 1
+    },
+    {
+        "id": "r8",
+        "num": "R16-H",
+        "date": "Tue, Jul 7",
+        "time": "4:00 PM",
+        "venue": "BC Place, Vancouver",
+        "col": "col-r16-r",
+        "nextMatch": "q4",
+        "nextSlot": 2
+    },
+    {
+        "id": "q3",
+        "num": "QF-3",
+        "date": "Sat, Jul 11",
+        "time": "5:00 PM",
+        "venue": "Hard Rock, Miami",
+        "col": "col-qf-r",
+        "nextMatch": "s2",
+        "nextSlot": 1
+    },
+    {
+        "id": "q4",
+        "num": "QF-4",
+        "date": "Sat, Jul 11",
+        "time": "9:00 PM",
+        "venue": "Arrowhead, Kansas City",
+        "col": "col-qf-r",
+        "nextMatch": "s2",
+        "nextSlot": 2
+    },
+    {
+        "id": "s2",
+        "num": "SF-2",
+        "date": "Wed, Jul 15",
+        "time": "3:00 PM",
+        "venue": "Mercedes-Benz, Atlanta",
+        "col": "col-sf-r",
+        "nextMatch": "FINAL",
+        "nextSlot": 2,
+        "loserMatch": "3RD",
+        "loserSlot": 2,
+        "cssClass": "sf-match"
+    }
+]

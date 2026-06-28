@@ -32,7 +32,7 @@
                 --border: #2a3a52;
                 --gold: #b5d4ef;
                 --gold-light: #ffffff;
-                --text: #e8edf5;
+                --text: #cad2de;
                 --text-dim: #6b7f99;
                 --text-mid: #94a3b8;
                 --input-bg: #0d1624;
@@ -58,8 +58,7 @@
 
             header {
                 background: #0a0e1a;
-                /* border-bottom: 2px solid var(--gold); */
-                padding: 28px 40px 10px;
+                padding: 28px 40px 0px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -168,7 +167,6 @@
                 display: grid;
                 grid-auto-columns: minmax(0, 1fr);
                 grid-auto-flow: column;
-                padding: 0 0 12px;
             }
             .round-label {
                 text-align: center;
@@ -213,7 +211,7 @@
             }
 
             .match-meta {
-                padding: 4px 8px;
+                padding: 6px 8px 4px;
                 font-size: 9.5px;
                 color: var(--text-dim);
                 display: flex;
@@ -235,8 +233,8 @@
             .team-row {
                 display: flex;
                 align-items: center;
-                padding: 4px 6px;
-                gap: 6px;
+                padding: 4px 4px 4px 8px;
+                gap: 2px;
                 position: relative;
                 cursor: pointer;
                 transition: background 0.12s;
@@ -245,7 +243,12 @@
                 background: #151f30;
             }
             .team-row.winner-row {
+                border-color: var(--winner-border);
                 background: var(--winner-bg);
+            }
+            .team-row.winner-row input.team-input {
+                color: var(--green-light);
+                font-weight: 600;
             }
             .team-row.winner-row:hover {
                 background: #122218;
@@ -256,13 +259,16 @@
                 width: 20px;
                 text-align: center;
                 flex-shrink: 0;
+                display: flex;
+                align-items: center;
             }
 
             input.team-input {
                 flex: 1;
-                background: var(--input-bg);
-                border: 1px solid var(--input-border);
-                border-radius: 3px;
+                background: transparent;
+                /* border: 1px solid var(--input-border); */
+                /* border-radius: 3px; */
+                border: none;
                 color: var(--text);
                 font-size: 11px;
                 font-family: "Inter", sans-serif;
@@ -279,54 +285,10 @@
             }
             input.team-input:focus {
                 border-color: var(--gold);
-                background: #121e32;
                 pointer-events: auto;
             }
             input.team-input::placeholder {
                 color: #2d4060;
-            }
-            input.team-input.confirmed {
-                border-color: #1d4ed8;
-                background: #0d1a2e;
-                color: #60a5fa;
-            }
-            input.team-input.winner {
-                border-color: var(--winner-border);
-                background: var(--winner-bg);
-                color: var(--green-light);
-                font-weight: 600;
-            }
-
-            input.score-input {
-                width: 28px;
-                flex-shrink: 0;
-                background: var(--input-bg);
-                border: 1px solid var(--input-border);
-                border-radius: 3px;
-                color: #e8c878;
-                font-size: 12px;
-                font-weight: 600;
-                font-family: "Oswald", sans-serif;
-                text-align: center;
-                padding: 4px 2px;
-                outline: none;
-                transition: border-color 0.15s;
-            }
-            input.score-input:focus {
-                border-color: var(--gold);
-            }
-            input.score-input::placeholder {
-                color: #2d4060;
-                font-size: 10px;
-            }
-
-            /* advance hint */
-            .advance-hint {
-                font-size: 8px;
-                color: #2d4060;
-                padding: 0 8px 3px;
-                text-align: right;
-                font-style: italic;
             }
 
             /* flash animation */
@@ -353,6 +315,9 @@
                 gap: 150px;
             }
             .trophy-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 text-align: center;
                 padding: 12px 0;
             }
@@ -577,9 +542,17 @@
                 <div class="center-col">
                     <div class="final-container">
                         <div class="trophy-center">
-                            <span class="big-trophy">🏆</span>
-                            <h2>World Cup Final</h2>
-                            <p>Jul 19 · MetLife Stadium, NJ · 3:00 PM EDT</p>
+                            <img
+                                src="https://digitalhub.fifa.com/transform/157d23bf-7e13-4d7b-949e-5d27d340987e/WC26_Logo?&io=transform:fill&quality=75"
+                                alt="FIFA World Cup 2026 Logo"
+                                class="display_logo"
+                            />
+                            <img
+                                src="https://digitalhub.fifa.com/transform/72a8ea8e-9019-49a4-8e79-8b2488cd9972/WC26_logo_brand_identity_black-bg?io=transform:fill&quality=100"
+                                alt="FIFA World Cup 2026 Dark Logo"
+                                class="print_logo"
+                            />
+                            <p>Sun, Jul 19 · 3:00 PM EDT</p>
                         </div>
                         <div class="champion-box">
                             <label>🥇 Champion</label>
@@ -607,9 +580,9 @@
                                 data-match="FINAL"
                                 data-slot="1"
                             >
-                                <span class="team-flag" id="flag-FINAL-1"
+                                <!-- <span class="team-flag" id="flag-FINAL-1"
                                     >🏳</span
-                                >
+                                > -->
                                 <input
                                     class="team-input"
                                     id="t-FINAL-1"
@@ -629,9 +602,9 @@
                                 data-match="FINAL"
                                 data-slot="2"
                             >
-                                <span class="team-flag" id="flag-FINAL-2"
+                                <!-- <span class="team-flag" id="flag-FINAL-2"
                                     >🏳</span
-                                >
+                                > -->
                                 <input
                                     class="team-input"
                                     id="t-FINAL-2"
@@ -661,7 +634,7 @@
                             data-match="3RD"
                             data-slot="1"
                         >
-                            <span class="team-flag" id="flag-3RD-1">🏳</span>
+                            <!-- <span class="team-flag" id="flag-3RD-1">🏳</span> -->
                             <input
                                 class="team-input"
                                 id="t-3RD-1"
@@ -681,7 +654,7 @@
                             data-match="3RD"
                             data-slot="2"
                         >
-                            <span class="team-flag" id="flag-3RD-2">🏳</span>
+                            <!-- <span class="team-flag" id="flag-3RD-2">🏳</span> -->
                             <input
                                 class="team-input"
                                 id="t-3RD-2"
@@ -741,329 +714,6 @@
                 "DR Congo": "cd",
             };
 
-            // bracket structure
-            // Each match: { id, num, date, time, venue, col, nextMatch, nextSlot, loserMatch, loserSlot }
-            // nextMatch = which match the winner feeds into
-            // nextSlot  = which slot (1 or 2) in that match
-            // loserMatch/loserSlot = for SF matches → 3rd place
-
-            const MATCHES = [
-                // R32 LEFT
-                {
-                    id: "m1",
-                    num: "M1",
-                    date: "Sun, Jun 28",
-                    time: "3:00 PM",
-                    venue: "SoFi Stadium, LA",
-                    col: "col-r32-l",
-                    nextMatch: "r1",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m2",
-                    num: "M2",
-                    date: "Mon, Jun 29",
-                    time: "1:00 PM",
-                    venue: "NRG Stadium, Houston",
-                    col: "col-r32-l",
-                    nextMatch: "r1",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m3",
-                    num: "M3",
-                    date: "Mon, Jun 29",
-                    time: "4:00 PM",
-                    venue: "Gillette Stadium, Boston",
-                    col: "col-r32-l",
-                    nextMatch: "r2",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m4",
-                    num: "M4",
-                    date: "Mon, Jun 29",
-                    time: "9:00 PM",
-                    venue: "Estadio Monterrey",
-                    col: "col-r32-l",
-                    nextMatch: "r2",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m5",
-                    num: "M5",
-                    date: "Tue, Jun 30",
-                    time: "1:00 PM",
-                    venue: "AT&T Stadium, Dallas",
-                    col: "col-r32-l",
-                    nextMatch: "r3",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m6",
-                    num: "M6",
-                    date: "Tue, Jun 30",
-                    time: "5:00 PM",
-                    venue: "MetLife Stadium, NJ",
-                    col: "col-r32-l",
-                    nextMatch: "r3",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m7",
-                    num: "M7",
-                    date: "Tue, Jun 30",
-                    time: "9:00 PM",
-                    venue: "Estadio Azteca, Mexico City",
-                    col: "col-r32-l",
-                    nextMatch: "r4",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m8",
-                    num: "M8",
-                    date: "Wed, Jul 1",
-                    time: "12:00 PM",
-                    venue: "Mercedes-Benz, Atlanta",
-                    col: "col-r32-l",
-                    nextMatch: "r4",
-                    nextSlot: 2,
-                },
-                // R16 LEFT
-                {
-                    id: "r1",
-                    num: "R16-A",
-                    date: "Sat, Jul 4",
-                    time: "1:00 PM",
-                    venue: "NRG Stadium, Houston",
-                    col: "col-r16-l",
-                    nextMatch: "q1",
-                    nextSlot: 1,
-                },
-                {
-                    id: "r2",
-                    num: "R16-B",
-                    date: "Sat, Jul 4",
-                    time: "5:00 PM",
-                    venue: "Lincoln Financial, Philadelphia",
-                    col: "col-r16-l",
-                    nextMatch: "q1",
-                    nextSlot: 2,
-                },
-                {
-                    id: "r3",
-                    num: "R16-C",
-                    date: "Sun, Jul 5",
-                    time: "4:00 PM",
-                    venue: "MetLife Stadium, NJ",
-                    col: "col-r16-l",
-                    nextMatch: "q2",
-                    nextSlot: 1,
-                },
-                {
-                    id: "r4",
-                    num: "R16-D",
-                    date: "Sun, Jul 5",
-                    time: "8:00 PM",
-                    venue: "Estadio Azteca, Mexico City",
-                    col: "col-r16-l",
-                    nextMatch: "q2",
-                    nextSlot: 2,
-                },
-                // QF LEFT
-                {
-                    id: "q1",
-                    num: "QF-1",
-                    date: "Thu, Jul 9",
-                    time: "4:00 PM",
-                    venue: "Gillette Stadium, Boston",
-                    col: "col-qf-l",
-                    nextMatch: "s1",
-                    nextSlot: 1,
-                },
-                {
-                    id: "q2",
-                    num: "QF-2",
-                    date: "Fri, Jul 10",
-                    time: "3:00 PM",
-                    venue: "SoFi Stadium, LA",
-                    col: "col-qf-l",
-                    nextMatch: "s1",
-                    nextSlot: 2,
-                },
-                // SF LEFT
-                {
-                    id: "s1",
-                    num: "SF-1",
-                    date: "Tue,Jul 14",
-                    time: "3:00 PM",
-                    venue: "AT&T Stadium, Dallas",
-                    col: "col-sf-l",
-                    nextMatch: "FINAL",
-                    nextSlot: 1,
-                    loserMatch: "3RD",
-                    loserSlot: 1,
-                    cssClass: "sf-match",
-                },
-                // R32 RIGHT
-                {
-                    id: "m9",
-                    num: "M9",
-                    date: "Wed, Jul 1",
-                    time: "4:00 PM",
-                    venue: "Lumen Field, Seattle",
-                    col: "col-r32-r",
-                    nextMatch: "r5",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m10",
-                    num: "M10",
-                    date: "Wed, Jul 1",
-                    time: "8:00 PM",
-                    venue: "Levi's Stadium, SF",
-                    col: "col-r32-r",
-                    nextMatch: "r5",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m11",
-                    num: "M11",
-                    date: "Thu, Jul 2",
-                    time: "3:00 PM",
-                    venue: "SoFi Stadium, LA",
-                    col: "col-r32-r",
-                    nextMatch: "r6",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m12",
-                    num: "M12",
-                    date: "Thu, Jul 2",
-                    time: "7:00 PM",
-                    venue: "BMO Field, Toronto",
-                    col: "col-r32-r",
-                    nextMatch: "r6",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m13",
-                    num: "M13",
-                    date: "Thu, Jul 2",
-                    time: "9:00 PM",
-                    venue: "BC Place, Vancouver",
-                    col: "col-r32-r",
-                    nextMatch: "r7",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m14",
-                    num: "M14",
-                    date: "Fri, Jul 3",
-                    time: "2:00 PM",
-                    venue: "AT&T Stadium, Dallas",
-                    col: "col-r32-r",
-                    nextMatch: "r7",
-                    nextSlot: 2,
-                },
-                {
-                    id: "m15",
-                    num: "M15",
-                    date: "Fri, Jul 3",
-                    time: "6:00 PM",
-                    venue: "Hard Rock, Miami",
-                    col: "col-r32-r",
-                    nextMatch: "r8",
-                    nextSlot: 1,
-                },
-                {
-                    id: "m16",
-                    num: "M16",
-                    date: "Fri, Jul 3",
-                    time: "9:30 PM",
-                    venue: "Arrowhead, Kansas City",
-                    col: "col-r32-r",
-                    nextMatch: "r8",
-                    nextSlot: 2,
-                },
-                // R16 RIGHT
-                {
-                    id: "r5",
-                    num: "R16-E",
-                    date: "Mon, Jul 6",
-                    time: "12:00 PM",
-                    venue: "Mercedes-Benz, Atlanta",
-                    col: "col-r16-r",
-                    nextMatch: "q3",
-                    nextSlot: 1,
-                },
-                {
-                    id: "r6",
-                    num: "R16-F",
-                    date: "Mon, Jul 6",
-                    time: "3:00 PM",
-                    venue: "AT&T Stadium, Dallas",
-                    col: "col-r16-r",
-                    nextMatch: "q3",
-                    nextSlot: 2,
-                },
-                {
-                    id: "r7",
-                    num: "R16-G",
-                    date: "Mon, Jul 6",
-                    time: "8:00 PM",
-                    venue: "Lumen Field, Seattle",
-                    col: "col-r16-r",
-                    nextMatch: "q4",
-                    nextSlot: 1,
-                },
-                {
-                    id: "r8",
-                    num: "R16-H",
-                    date: "Tue, Jul 7",
-                    time: "4:00 PM",
-                    venue: "BC Place, Vancouver",
-                    col: "col-r16-r",
-                    nextMatch: "q4",
-                    nextSlot: 2,
-                },
-                // QF RIGHT
-                {
-                    id: "q3",
-                    num: "QF-3",
-                    date: "Sat, Jul 11",
-                    time: "5:00 PM",
-                    venue: "Hard Rock, Miami",
-                    col: "col-qf-r",
-                    nextMatch: "s2",
-                    nextSlot: 1,
-                },
-                {
-                    id: "q4",
-                    num: "QF-4",
-                    date: "Sat, Jul 11",
-                    time: "9:00 PM",
-                    venue: "Arrowhead, Kansas City",
-                    col: "col-qf-r",
-                    nextMatch: "s2",
-                    nextSlot: 2,
-                },
-                // SF RIGHT
-                {
-                    id: "s2",
-                    num: "SF-2",
-                    date: "Wed, Jul 15",
-                    time: "3:00 PM",
-                    venue: "Mercedes-Benz, Atlanta",
-                    col: "col-sf-r",
-                    nextMatch: "FINAL",
-                    nextSlot: 2,
-                    loserMatch: "3RD",
-                    loserSlot: 2,
-                    cssClass: "sf-match",
-                },
-            ];
-
             const TEAMS = {
                 m1: ["South Africa", "Canada"],
                 m2: ["Brazil", "Japan"],
@@ -1083,6 +733,29 @@
                 m16: ["Australia", "DR Congo"],
             };
 
+            // bracket structure
+            // Each match: { id, num, date, time, venue, col, nextMatch, nextSlot, loserMatch, loserSlot }
+            // nextMatch = which match the winner feeds into
+            // nextSlot  = which slot (1 or 2) in that match
+            // loserMatch/loserSlot = for SF matches → 3rd place
+
+            let MATCHES = [];
+            const matchMap = {};
+
+            async function loadData() {
+                const response = await fetch("./matches.json");
+                MATCHES = await response.json();
+
+                MATCHES.forEach((m) => {
+                    const col = document.getElementById(m.col);
+                    if (col) col.appendChild(makeMatch(m));
+                    matchMap[m.id] = m;
+                });
+                fillKnownTeams();
+            }
+
+            document.addEventListener("DOMContentLoaded", loadData);
+
             function makeMatch(m) {
                 const div = document.createElement("div");
                 div.className = "match" + (m.cssClass ? " " + m.cssClass : "");
@@ -1092,49 +765,44 @@
                         <span class="match-num">${m.date} · ${m.time}</span>
                     </div>
                     <div class="team-row" id="row-${m.id}-1" data-match="${m.id}" data-slot="1">
-                        <span class="team-flag" id="flag-${m.id}-1">🏳</span>
                         <input class="team-input" id="t-${m.id}-1" placeholder="—" />
                     </div>
                     <div class="team-row" id="row-${m.id}-2" data-match="${m.id}" data-slot="2">
-                        <span class="team-flag" id="flag-${m.id}-2">🏳</span>
                         <input class="team-input" id="t-${m.id}-2" placeholder="—" />
                     </div>`;
                 return div;
             }
-
-            // Build columns
-            MATCHES.forEach((m) => {
-                const col = document.getElementById(m.col);
-                if (col) col.appendChild(makeMatch(m));
-            });
-
-            // Match lookup by id
-            const matchMap = {};
-            MATCHES.forEach((m) => (matchMap[m.id] = m));
 
             // Set a team value + flag
             function setTeam(matchId, slot, name, cls) {
                 const inp = document.getElementById(
                     "t-" + matchId + "-" + slot,
                 );
-                const flg = document.getElementById(
-                    "flag-" + matchId + "-" + slot,
-                );
-                if (inp) {
-                    inp.value = name;
-                    inp.className = "team-input" + (cls ? " " + cls : "");
+                if (!inp) return;
+
+                inp.value = name;
+                inp.className = "team-input" + (cls ? " " + cls : "");
+
+                const row = inp.closest(".team-row");
+                let flg = row.querySelector(".team-flag");
+
+                if (!flg) {
+                    flg = document.createElement("span");
+                    flg.className = "team-flag";
+                    flg.id = "flag-" + matchId + "-" + slot;
+                    row.insertBefore(flg, inp);
                 }
-                if (flg)
-                    flg.innerHTML =
-                        "<img src='https://flagcdn.com/w20/" +
-                        FLAGS[name] +
-                        ".png' srcset='https://flagcdn.com/w40/" +
-                        FLAGS[name] +
-                        ".png 2x, https://flagcdn.com/w60/" +
-                        FLAGS[name] +
-                        ".png 3x' alt='" +
-                        name +
-                        "' />";
+                flg.innerHTML = FLAGS[name]
+                    ? "<img src='https://flagcdn.com/w20/" +
+                      FLAGS[name] +
+                      ".png' srcset='https://flagcdn.com/w40/" +
+                      FLAGS[name] +
+                      ".png 2x, https://flagcdn.com/w60/" +
+                      FLAGS[name] +
+                      ".png 3x' alt='" +
+                      name +
+                      "' />"
+                    : "";
             }
 
             // Advance winner to next round
@@ -1158,9 +826,12 @@
                 )?.value;
                 if (!name) return;
 
+                markWinner(matchId, slot);
+                flashRow(matchId, slot);
+
                 // winner → next match
                 if (m.nextMatch) {
-                    setTeam(m.nextMatch, m.nextSlot, name, "winner");
+                    setTeam(m.nextMatch, m.nextSlot, name, "");
                     flashRow(m.nextMatch, m.nextSlot);
                 }
                 // loser → 3rd place (SF only)
@@ -1171,10 +842,9 @@
                     )?.value;
                     if (otherName) {
                         setTeam(m.loserMatch, m.loserSlot, otherName, "");
-                        flashRow(m.loserMatch, m.loserSlot);
+                        flashRow(m.loserMatch, m.loserSlot)
                     }
                 }
-                markWinner(matchId, slot);
             }
 
             function markWinner(matchId, slot) {
@@ -1218,10 +888,6 @@
                 });
             }
 
-            document.addEventListener("DOMContentLoaded", () => {
-                fillKnownTeams();
-            });
-
             function clearScores() {
                 document
                     .querySelectorAll("input.score-input")
@@ -1239,13 +905,14 @@
                     .forEach((el) => (el.value = ""));
                 document
                     .querySelectorAll(".team-flag")
-                    .forEach((el) => (el.textContent = "🏳"));
+                    .forEach((el) => el.remove());
                 document
                     .querySelectorAll(".team-row")
                     .forEach((el) =>
                         el.classList.remove("winner-row", "just-advanced"),
                     );
                 document.getElementById("champion").value = "";
+                fillKnownTeams();
             }
 
             // Allow manual typing to update flag
@@ -1253,8 +920,7 @@
                 if (!e.target.classList.contains("team-input")) return;
                 const row = e.target.closest(".team-row");
                 const flg = row?.querySelector(".team-flag");
-                if (flg)
-                    flg.textContent = getFlag(e.target.value.trim()) || "🏳";
+                if (flg) flg.textContent = getFlag(e.target.value.trim()) || "";
                 e.target.classList.remove("confirmed", "winner");
             });
 
