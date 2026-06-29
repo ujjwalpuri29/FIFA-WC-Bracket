@@ -233,16 +233,7 @@ function setTeam(matchId, slot, name, cls) {
         row.insertBefore(flg, inp);
     }
     flg.innerHTML = FLAGS[name]
-        ? "<img src='https://flagcdn.com/w20/" +
-          FLAGS[name] +
-          ".png' srcset='https://flagcdn.com/w40/" +
-          FLAGS[name] +
-          ".png 2x, https://flagcdn.com/w60/" +
-          FLAGS[name] +
-          ".png 3x' alt='" +
-          name +
-          "' />"
-        : "";
+        ? `<img src='https://flagcdn.com/${FLAGS[name]}.svg' alt='${name}' width='20'/>` : "";
 }
 
 // Advance winner to next round
@@ -393,12 +384,7 @@ document.addEventListener("input", (e) => {
             row.insertBefore(flg, input);
         }
 
-        flg.innerHTML = `
-                        <img src="https://flagcdn.com/w20/${code}.png"
-                            srcset="https://flagcdn.com/w40/${code}.png 2x,
-                                    https://flagcdn.com/w60/${code}.png 3x"
-                            alt="${name}">
-                        `;
+        flg.innerHTML = `<img src="https://flagcdn.com/${code}.svg" alt="${name}" width="20">`;
 
         highlightPreviousWinner(row.dataset.match, name);
     } else if (flg) {
