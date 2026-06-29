@@ -216,6 +216,7 @@ main {
     position: relative;
     cursor: pointer;
     transition: background 0.12s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .team-row:hover {

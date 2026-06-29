@@ -207,10 +207,10 @@ function makeMatch(m) {
                                 <span class="match-num">${formatMatchMeta(m)}</span>
                             </div>
                             <div class="team-row" id="row-${m.id}-1" data-match="${m.id}" data-slot="1">
-                                <input class="team-input" id="t-${m.id}-1" placeholder="—" />
+                                <input class="team-input" id="t-${m.id}-1" placeholder="—" readonly/>
                             </div>
                             <div class="team-row" id="row-${m.id}-2" data-match="${m.id}" data-slot="2">
-                                <input class="team-input" id="t-${m.id}-2" placeholder="—" />
+                                <input class="team-input" id="t-${m.id}-2" placeholder="—" readonly/>
                             </div>`;
     return div;
 }
@@ -299,7 +299,7 @@ function flashRow(matchId, slot) {
 }
 
 // Double-click delegation
-document.addEventListener("dblclick", (e) => {
+document.addEventListener("click", (e) => {
     window.getSelection()?.removeAllRanges();
     const row = e.target.closest(".team-row[data-match]");
     if (!row) return;
@@ -359,37 +359,3 @@ function highlightPreviousWinner(currentMatchId, typedName) {
     markWinner(parentMatch.id, winningSlot);
     flashRow(parentMatch.id, winningSlot);
 }
-
-// Allow manual typing to update flag
-document.addEventListener("input", (e) => {
-    if (!e.target.classList.contains("team-input")) return;
-
-    const input = e.target;
-    const row = input.closest(".team-row");
-    if (!row) return;
-
-    const name = input.value.trim();
-
-    const key = Object.keys(FLAGS).find(
-        (country) => country.toLowerCase() === name.toLowerCase(),
-    );
-    const code = key ? FLAGS[key] : null;
-
-    let flg = row.querySelector(".team-flag");
-
-    if (code) {
-        if (!flg) {
-            flg = document.createElement("span");
-            flg.className = "team-flag";
-            row.insertBefore(flg, input);
-        }
-
-        flg.innerHTML = `<img src="https://flagcdn.com/${code}.svg" alt="${name}" width="20">`;
-
-        highlightPreviousWinner(row.dataset.match, name);
-    } else if (flg) {
-        flg.remove();
-    }
-
-    input.classList.remove("confirmed", "winner");
-});
