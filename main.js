@@ -51,6 +51,9 @@ const TEAMS = {
     m14: ["Colombia", "Ghana"],
     m15: ["Australia", "Egypt"],
     m16: ["Argentina", "Cabo Verde"],
+    r1: ["Canada", "Morocco"],
+    r2: ["Paraguay", ""],
+    r5: ["Brazil", ""]
 };
 
 // bracket structure
@@ -73,7 +76,7 @@ async function loadData() {
     });
 
     fillKnownTeams();
-    
+
     document.getElementById("final-time").textContent = formatMatchMeta({
         time: "2026-07-19T19:00:00Z",
     });
@@ -81,8 +84,9 @@ async function loadData() {
     document.getElementById("3RD-time").textContent = formatMatchMeta({
         time: "2026-07-18T19:00:00Z",
     });
-    
+
     scheduleConnectorDraw();
+    highlightUpcomingMatches();
 }
 
 document.addEventListener("DOMContentLoaded", loadData);
@@ -198,6 +202,39 @@ function formatMatchMeta(m) {
     return `${m.date || ""}${m.date && m.time ? " · " : ""}${m.time || ""}`;
 }
 
+function highlightUpcomingMatches() {
+    const now = new Date();
+
+    const today = new Date(now);
+    today.setHours(0, 0, 0, 0);
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const dayAfter = new Date(tomorrow);
+    dayAfter.setDate(dayAfter.getDate() + 1);
+
+    MATCHES.forEach((match) => {
+        if (!match.kickoff) return;
+
+        const kickoff = new Date(match.kickoff);
+
+        const day = new Date(kickoff);
+        day.setHours(0, 0, 0, 0);
+
+        const el = document.getElementById(`match-${match.id}`);
+        if (!el) return;
+
+        el.classList.remove("today", "tomorrow");
+
+        if (day.getTime() === today.getTime()) {
+            el.classList.add("today");
+        } else if (day.getTime() === tomorrow.getTime()) {
+            el.classList.add("tomorrow");
+        }
+    });
+}
+
 function makeMatch(m) {
     const div = document.createElement("div");
     div.className = "match" + (m.cssClass ? " " + m.cssClass : "");
@@ -233,7 +270,8 @@ function setTeam(matchId, slot, name, cls) {
         row.insertBefore(flg, inp);
     }
     flg.innerHTML = FLAGS[name]
-        ? `<img src='https://flagcdn.com/${FLAGS[name]}.svg' alt='${name}' width='20'/>` : "";
+        ? `<img src='https://flagcdn.com/${FLAGS[name]}.svg' alt='${name}' width='20'/>`
+        : "";
 }
 
 // Advance winner to next round
@@ -310,7 +348,10 @@ document.addEventListener("click", (e) => {
 // Fill confirmed teams
 function fillKnownTeams() {
     Object.entries(TEAMS).forEach(([mid, teams]) => {
-        [1, 2].forEach((n, i) => setTeam(mid, n, teams[i], "confirmed"));
+        [1, 2].forEach((n, i) => {
+            setTeam(mid, n, teams[i], "confirmed");
+            highlightPreviousWinner(mid, teams[i]);
+        });
     });
 }
 
