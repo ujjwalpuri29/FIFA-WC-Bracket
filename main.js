@@ -52,8 +52,9 @@ const TEAMS = {
     m15: ["Australia", "Egypt"],
     m16: ["Argentina", "Cabo Verde"],
     r1: ["Canada", "Morocco"],
-    r2: ["Paraguay", ""],
-    r5: ["Brazil", ""]
+    r2: ["Paraguay", "France"],
+    r5: ["Brazil", "Norway"],
+    r6: ["Mexico", ""]
 };
 
 // bracket structure
